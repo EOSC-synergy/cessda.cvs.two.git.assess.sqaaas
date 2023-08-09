@@ -1,0 +1,62 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: release/1.7.11
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/cessda/cessda.cvs.two:
+      branch: main
+      repo: https://github.com/cessda/cessda.cvs.two.git
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/cessda/cessda.cvs.two git:
+        commands:
+        - /usr/bin/env sh .sqa/script.crappy-plum-barnacle.sh
+        container: qc.acc_freaky-zucchini-nightingale
+  QC.Doc:
+    repos:
+      github.com/cessda/cessda.cvs.two find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.lousy-orchid-labradoodle.sh
+        container: qc.doc_crappy-azure-dolphin
+      github.com/cessda/cessda.cvs.two git:
+        commands:
+        - /usr/bin/env sh .sqa/script.squeaky-gold-vulture.sh
+        container: qc.doc_snoopy-aquamarine-skunk
+      github.com/cessda/cessda.cvs.two markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.stuffy-indigo-buffalo.sh
+        container: qc.doc_goopy-turquoise-penguin
+  QC.Lic:
+    repos:
+      github.com/cessda/cessda.cvs.two licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.messy-beige-hamster.sh
+        container: qc.lic_leaky-champagne-spoonbill
+  QC.Met:
+    repos:
+      github.com/cessda/cessda.cvs.two cff-converter-python:
+        commands:
+        - /usr/bin/env sh .sqa/script.wimpy-amaranth-buffalo.sh
+        container: qc.met_pokey-bronze-deer
+  QC.Sty:
+    repos:
+      github.com/cessda/cessda.cvs.two checkstyle:
+        commands:
+        - /usr/bin/env sh .sqa/script.slaphappy-wheat-penguin.sh
+        container: qc.sty_craggy-persimmon-sheepdog
+      github.com/cessda/cessda.cvs.two jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.tacky-turquoise-eleuth.sh
+        container: qc.sty_flaky-sepia-oyster
+  QC.Ver:
+    repos:
+      github.com/cessda/cessda.cvs.two get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.messy-amaranth-gecko.sh
+        container: qc.ver_sleepy-khaki-anteater
+timeout: 5400
